@@ -58,7 +58,7 @@ namespace CaseConverter.Converters
         /// </summary>
         /// <param name="input">判定する文字列</param>
         /// <returns>文字列のパターン</returns>
-        internal static StringCasePattern GetCasePattern(string input)
+        public static StringCasePattern GetCasePattern(string input)
         {
             if (string.IsNullOrEmpty(input))
             {
@@ -101,7 +101,7 @@ namespace CaseConverter.Converters
         /// 空白や記号、小文字と大文字の境を単語の境界とします。
         /// 行末でない場所に大文字が連続する場合は、最後の1文字を除いて単語と認識します。
         /// </remarks>
-        internal static IEnumerable<string> GetWords(string input)
+        public static IEnumerable<string> GetWords(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
@@ -110,7 +110,21 @@ namespace CaseConverter.Converters
 
             return Regex.Matches(input, @"[a-z\d]+|[A-Z\d]+(?![A-Za-z\d])|[A-Z\d]+(?=[A-Z])|[A-Z][a-z\d]*").GetValues();
         }
+        /// <summary>
+        /// 文字列を変数名単位に分割します。
+        /// </summary>
+        /// <remarks>
+        /// 空白やタブの境を単語の境界とします。変数名っぽいものを抽出します。
+        /// </remarks>
+        public static IEnumerable<string> GetVariableWords(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return Enumerable.Empty<string>();
+            }
 
+            return Regex.Matches(input, @"\b(?![0-9])[\w]*[[^a-zA-Z0-9_\$]|\r\n|\n]").GetValues();
+        }
         /// <summary>
         /// 複合の単語を指定のパターンで連結するコンバーターを取得します。
         /// </summary>

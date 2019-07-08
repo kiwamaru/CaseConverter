@@ -13,6 +13,13 @@ namespace Test.CaseConverter.Converters
     public class StringCaseConverterTest
     {
         [TestMethod]
+        public void GetVariableWordsTest()
+        {
+            string input = "Test Input snake_cased";
+            var output = StringCaseConverter.GetVariableWords(input);
+            Assert.AreEqual(output.First(), "Test");
+        }
+        [TestMethod]
         public void ConvertTest()
         {
             var convertPatterns = new List<StringCasePattern>

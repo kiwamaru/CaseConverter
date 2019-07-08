@@ -70,13 +70,13 @@
     <Compile Include="Utils\StringUtilTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Key.snk" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\CaseConverter\CaseConverter.csproj">
       <Project>{664e8280-457a-4177-87e9-96b0dce7bec1}</Project>
       <Name>CaseConverter</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Key.snk" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
